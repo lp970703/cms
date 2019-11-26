@@ -31,7 +31,6 @@ public class Swagger2Config {
 
     }
 
-
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("看点咨询接口文档")
