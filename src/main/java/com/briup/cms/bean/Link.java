@@ -13,7 +13,7 @@ public class Link implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "链接ID")
     private int id;
-    @ApiModelProperty(value = "链接名字",required = true)
+    @ApiModelProperty(value = "链接名字",required = true)  //必须要输入那么就一定是required = true，如果是隐藏就hidden = true
     private String name;
     @ApiModelProperty(value = "链接ID",required = true)
     private String url;

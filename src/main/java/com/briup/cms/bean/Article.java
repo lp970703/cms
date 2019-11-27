@@ -1,20 +1,47 @@
 package com.briup.cms.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "cms_article")
+@ApiModel
 public class Article implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "信息id")
     private int id;
+
+    @ApiModelProperty(value = "信息作者",required = true)
     private String author;
-    private int clickTimes;
+
+    @ApiModelProperty(value = "点击次数",hidden = true)
+    private int clickTimes;  //jpa会把驼峰命名规则clickTimes变成click_times  解决方法：1、修改数据库的字段名。2、修改配置文件，让配置文件跳过这个jpa修改
+
+    @ApiModelProperty(value = "信息内容",required = true)
     private String content;
-    private Date publishDate;
+
+    @ApiModelProperty(value = "发布时间",hidden = true)
+    private Date publishDate;  //会解析成publish_date
+
+    @ApiModelProperty(value = "信息标题",required = true)
     private String title;
+
+    @ManyToOne   //来一个多对一的主键，这样就能够建立与category的关系，多个文章对应单个栏目
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public int getId() {
         return id;

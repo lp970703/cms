@@ -1,4 +1,4 @@
-#���÷������˿�
+#���÷������˿�
 server:
   port: 9997
 
@@ -8,3 +8,11 @@ spring:
     url: jdbc:mysql://60.205.221.118:3306/cms?useunicode=true;&characterEncoding=utf8
     username: root
     password: root
+  jpa:           #对于jpa的设置，解决了jpa驼峰敏明规则，详见Article那个类
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true   #展示sql语句，以及正确格式
+    properties:
+      hibernate:
+        format_sql: true
